@@ -1,0 +1,5 @@
+[eayun]
+name=a-mirror-of-eayun
+baseurl=http://manager.com:8000/mirrors/
+enabled=1
+gpgcheck=0

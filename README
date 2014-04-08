@@ -1,0 +1,15 @@
+****************************
+A customize tools for build your own centos6.x iso.  
+Thanks for ljvsss#gmail.com.
+****************************
+
+###how to use:
+#### 0. environment
+>[root@os-builder ~]# cat /etc/redhat-release 
+
+    CentOS release 6.5 (Final)
+>[root@os-builder cdrom]# uname -a
+
+    Linux os-builder.fx-dev.net 2.6.32-431.el6.x86_64 #1 SMP Fri Nov 22 03:15:09 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+#### 1. prepare
+# yum -y install anaconda-runtime createrepo yum-utils anacondaanaconda-help busybox-anaconda mkisofs

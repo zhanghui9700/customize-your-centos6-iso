@@ -1,0 +1,25 @@
+#!/bin/bash
+
+nic=$1
+
+if [ ! $nic ];then
+    echo 
+    echo  "Usage Like: ec_init eth1"
+    echo 
+    exit 1
+fi
+
+ipaddr=`ifconfig $nic | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'`
+
+config_file='/root/answers.cfg'
+
+sed -i "s/127.0.0.1/$ipaddr/g" -i $config_file
+
+packstack --answer-file=$config_file
+
+kvm=`egrep "vmx|svm" /proc/cpuinfo > /dev/null && echo True || echo False`
+
+if [ "$kvm" = 'False' ];then
+    sed -i 's/libvirt_type=kvm/libvirt_type=qemu/g'  -i /etc/nova/nova.conf
+    /etc/init.d/openstack-nova-compute restart
+fi
